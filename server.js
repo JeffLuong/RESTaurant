@@ -58,7 +58,7 @@ server.get("/:id", function(req, res) {
 
   menu.findOne({ _id: mongoId }, function(err, foundItem) {
     res.render("", {
-      menuItem: foundItem 
+      menuItem: foundItem
     });
   });
 });
@@ -94,3 +94,5 @@ server.patch("/:id", function(req, res) {
   var updatedItem = req.body.menuItem;
 });
 /*****************ORDERS***********************/
+
+// server.get();
