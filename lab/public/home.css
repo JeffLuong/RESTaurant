@@ -1,0 +1,25 @@
+body {
+	background-color: #BBE1C3;
+}
+
+.container {
+	width: 1000px;
+	height: 500px;
+	border-radius: 10px;
+	background-color: white;
+}
+
+.button {
+	height: 150px;
+	width: 200px;
+	border-radius: 20px;
+	display: inline-block;
+	background-color: #EDEEC0;
+}
+
+.button-container {
+	display: inline;
+
+}
+
+.
