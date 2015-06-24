@@ -127,13 +127,11 @@ server.get("/orders", function(req, res) {
 
 // Create order page
 server.post("/create_order", function(req, res) {
-<<<<<<< HEAD
-  var data = req.body.menuItem;
-  var newItem = new menuItem(data);
-=======
+
+
   var data = req.body.orderItem;
   var newItem = new order(data);
->>>>>>> 951d37f3233498e59c22b0477d0291aef117abbe
+
   newItem.hidden = false;
 
   newItem.save(function(err, result) {
