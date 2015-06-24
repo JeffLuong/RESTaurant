@@ -14,3 +14,7 @@
 	color: white;
 	color: #423C32;
 }
+
+.navbar ul {
+	list-style: none;
+}
