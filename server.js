@@ -68,7 +68,7 @@ server.get("/menu/:id", function(req, res) {
 });
 
 // Create Menu item
-server.post("/boh/create_menu", function(req, res) {
+server.post("/create_menu", function(req, res) {
   var data = req.body.menuItem;
   var newItem = new menuItem(data);
   newItem.hidden = false;
@@ -113,7 +113,7 @@ server.get("/orders", function(req, res) {
 });
 
 // Create order page
-server.post("/foh/create_order", function(req, res) {
+server.post("/create_order", function(req, res) {
   var data = req.body.menuItem;
   var newItem = new menuItem(data);
   newItem.hidden = false;
