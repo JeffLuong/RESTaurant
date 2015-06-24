@@ -1,3 +1,7 @@
+* {
+	font-family: 'Open Sans Condensed', sans-serif;
+	font: inherit;
+}
 body {
 	background-color: #BBE1C3;
 }
@@ -9,17 +13,37 @@ body {
 	background-color: white;
 }
 
+h1, p {
+	color: #423C32;
+}
+
+h1 {
+	font-size: 40px;
+}
+
+p {
+	font-size: 18px;
+}
+
+.button-container {
+	display: inline-block;
+}
+
 .button {
 	height: 150px;
 	width: 200px;
 	border-radius: 20px;
-	display: inline-block;
 	background-color: #EDEEC0;
+	position: absolute;
+	text-align: center;
+	margin: 0 0 0 153px;
 }
 
-.button-container {
-	display: inline;
+.button a {
+	text-decoration: none;
+	font-size: 30px;
+	top: 50px;
+	position: relative;
+	color: #423C32;
 
 }
-
-.

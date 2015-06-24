@@ -94,3 +94,7 @@ server.patch("/:id", function(req, res) {
   var updatedItem = req.body.menuItem;
 });
 /*****************ORDERS***********************/
+
+
+server.listen(3000);
+console.log("the mon god is ever watchful")
