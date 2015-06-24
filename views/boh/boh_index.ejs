@@ -12,9 +12,9 @@
 		</div>
 		<nav class="navbar">
 			<ul>
-				<li><a href="#">Return Home</a></li>
-				<li><a href="#">Create New Item</a></li>
-				<li><a href="#">About Us</a></li>
+				<li><a href="/home.html">Return Home</a></li>
+				<li><a href="/boh/create_menu">Create New Item</a></li>
+				<li><a href="/about.html">About Us</a></li>
 			</ul>
 		</nav>
 		<h1>All Items</h1>
@@ -22,7 +22,7 @@
 		<ul class="user-index">
 			<% menuItem.forEach(function(menuItem, i) { %>
 			<li class="individual-item">
-				<a href="/some kind of url/<%= menuItem._id %>">
+				<a href="/menu/<%= menuItem._id %>">
 					<%= menuItem.name %>
 				</a>
 			</li>
