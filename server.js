@@ -36,7 +36,7 @@ var orderSchema = new Schema ({
 });
 
 // Create models and collections
-var order = mongoose.model('orders', orderSchema);
+var orders = mongoose.model('orders', orderSchema);
 var menu = mongoose.model('menu', menuItemSchema);
 
 // Connect to database
@@ -71,7 +71,6 @@ server.get("/menu/:id", function(req, res) {
 
 // Create Menu item
 server.post("/create_menu", function(req, res) {
-  console.log("Create menu reached.")
   var data = req.body.menuItem;
   var newItem = new menu(data);
   newItem.hidden = false;
@@ -128,8 +127,11 @@ server.get("/orders", function(req, res) {
 
 // Create order page
 server.post("/create_order", function(req, res) {
+
+
   var data = req.body.orderItem;
   var newItem = new order(data);
+
   newItem.hidden = false;
 
   newItem.save(function(err, result) {
