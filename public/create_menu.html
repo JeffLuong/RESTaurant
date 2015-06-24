@@ -18,16 +18,23 @@
 				<li><a href="/about.html"></a>About Us</li>
 			</ul>
 		</nav>
-		<form action="/" method="post">
+		<form action="/create_menu" method="post">
 			<h1>Create A New Item</h1>
-			<input type="text" name="menuItem[name]">
-			<textarea name="menuItem[description]">
-			<input type="text" name="menuItem[allergens][]">
-			<input type="item-price" name="menuItem[price]">
+			<label>Item Name</label></br>
+			<input type="text"
+						 name="menuItem[name]"></br>
+			<label>Description</label></br>
+			<textarea name="menuItem[description]"></textarea></br>
+			<label>Allergens</label></br>
+			<input type="text"
+						 name="menuItem[allergens][]"></br>
+			<label>Price</label></br>
+			<input type="item-price"
+						 name="menuItem[price]"></br>
+
+			<input type="submit"
+						 value="Add">
 		</form>
 </div>
 </body>
 </html>
-
-
-

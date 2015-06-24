@@ -21,7 +21,18 @@
 		<p><%= menuItem.description %></p>
 		<p><%= menuItem.allergens %></p>
 		<p><%= menuItem.price %></p>
+<<<<<<< HEAD
 		
+=======
+		<form action="/menu/<%= menuItem._id %>?_method=DELETE" method="post">
+
+
+				<input id="delete-button"
+							 type="submit"
+							 value="Delete">
+
+		</form>
+>>>>>>> 951d37f3233498e59c22b0477d0291aef117abbe
 	</div>
 </body>
 </html>
