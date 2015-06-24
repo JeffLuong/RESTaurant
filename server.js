@@ -5,6 +5,7 @@ var express     = require('express'),
     MongoClient = require('mongodb').MongoClient,
     ObjectId    = require('mongodb').ObjectId,
     port        = 3000,
+    methodOverride = require('method-override'),
     mongoose    = require('mongoose');
     mongoose.set('debug', true);
 var Schema      = mongoose.Schema;
@@ -15,6 +16,7 @@ server.set('view_engine', 'ejs');
 
 // Static files
 server.use(express.static("./public"));
+server.use(methodOverride("_method"));
 server.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -23,8 +25,8 @@ server.use(bodyParser.urlencoded({
 var menuItemSchema = new Schema ({
   name: { type: String, required: true, unique: true },
   description: { type: String, required: true },
-  allergens: [{ type: String, required: true }],
-  price: { type: String, required: true }
+  allergens: [ { type: String, required: true } ],
+  price: { type: Number, required: true }
 });
 
 // Order item schema
@@ -34,7 +36,7 @@ var orderSchema = new Schema ({
 });
 
 // Create models and collections
-var orders = mongoose.model('orders', orderSchema);
+var order = mongoose.model('orders', orderSchema);
 var menu = mongoose.model('menu', menuItemSchema);
 
 // Connect to database
@@ -69,14 +71,17 @@ server.get("/menu/:id", function(req, res) {
 
 // Create Menu item
 server.post("/create_menu", function(req, res) {
+  console.log("Create menu reached.")
   var data = req.body.menuItem;
-  var newItem = new menuItem(data);
+  var newItem = new menu(data);
   newItem.hidden = false;
-
+  console.log(newItem);
   newItem.save(function(err, result) {
     if(err) {
       console.log(err);
-    }
+    } else {
+      console.log(result);
+    };
   });
   res.redirect(301, "/menu");
 });
@@ -101,6 +106,15 @@ server.patch("/menu/:id", function(req, res) {
     res.redirect(301, '/menu/' + req.params.id);
   });
 });
+
+server.delete("/menu/:id", function(req, res) {
+  var mongoId = new ObjectId(req.params.id);
+
+  menu.remove(
+    { _id: mongoId }, function(err, result) {
+      res.redirect(301, "/menu");
+  });
+});
 /*****************ORDERS***********************/
 
 // Gets and shows current order list
@@ -114,8 +128,8 @@ server.get("/orders", function(req, res) {
 
 // Create order page
 server.post("/create_order", function(req, res) {
-  var data = req.body.menuItem;
-  var newItem = new menuItem(data);
+  var data = req.body.orderItem;
+  var newItem = new order(data);
   newItem.hidden = false;
 
   newItem.save(function(err, result) {
@@ -130,7 +144,7 @@ server.post("/create_order", function(req, res) {
 server.get("/orders/:id/edit_order", function(req, res) {
   var mongoId = new ObjectId(req.params.id);
 
-  menu.findOne({ _id: mongoId }, function(err, foundItem) {
+  order.findOne({ _id: mongoId }, function(err, foundItem) {
     res.render("boh/boh_edit.ejs", {
       orderItem: foundItem
     });
@@ -140,9 +154,9 @@ server.get("/orders/:id/edit_order", function(req, res) {
 // Update orders & returns to current orders
 server.patch("/orders/:id", function(req, res) {
   var mongoId = new ObjectId(req.params.id);
-  var updatedItem = req.body.menuItem;
+  var updatedItem = req.body.orderItem;
 
-  menu.update({ _id: mongoId }, updatedItem, function(err, result) {
+  order.update({ _id: mongoId }, updatedItem, function(err, result) {
     res.redirect(301, '/orders/' + req.params.id);
   });
 });
